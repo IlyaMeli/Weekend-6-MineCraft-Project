@@ -1,0 +1,35 @@
+.container {
+  height: 100vmin;
+  width: 100vmin;
+  display: grid;
+}
+
+.sky {
+  background: #8cbfff;
+}
+.ground {
+  /* background: rgb(161, 103, 69); */
+  background: url("./images/ground.jpeg");
+  background-size: 100%;
+}
+.ground-top {
+  /* background: rgb(161, 103, 69); */
+  background: url("./images/ground-top.jpeg");
+  background-size: 100%;
+}
+.stone {
+  background: url("./images/stone.jpeg");
+  background-size: 100%;
+}
+.tree {
+  background: url("./images/tree.jpeg");
+  background-size: 100%;
+}
+.cloud {
+  background: url("./images/cloud.jpeg");
+  background-size: 100%;
+}
+.leaf {
+  background: url("./images/leaf.jpeg");
+  background-size: 100%;
+}
