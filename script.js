@@ -56,46 +56,94 @@ let toolsColorChange = () => {
 
 sidebar.addEventListener("click", (e) => {
   toolsColorChange();
-  if (e.target !== selected) {
+  if (e.target !== selected && e.target !== sidebar) {
     e.target.style.backgroundColor = "blue";
     TOOL_STATE = e.target.getAttribute("data-type");
   }
   if (SELECTED_STATE && e.target === selected) {
-    selected.classList.remove(selected.classList[1]);
+    // selected.classList.remove(selected.classList[1]);
+    selected.className = "selected";
     TOOL_STATE = "";
   }
 });
 
+function option(type1, type2) {
+  if (elementType === type1 || elementType === type2) {
+    e.target.classList.remove(elementType);
+    e.target.classList.add("sky");
+    selected.classList.add(elementType);
+    SELECTED_STATE = elementType;
+  }
+}
+
+sidebar.addEventListener("click", (e) => {
+  toolsColorChange();
+  if (e.target !== selected && e.target !== sidebar) {
+    e.target.style.backgroundColor = "blue";
+    TOOL_STATE = e.target.getAttribute("data-type");
+  }
+  if (SELECTED_STATE && e.target === selected) {
+    selected.className = "selected";
+    TOOL_STATE = "";
+  }
+});
+
+function toolFunctionality(e, elementType, tool, type1, type2 = null) {
+  if (TOOL_STATE === tool) {
+    if (elementType === type1 || elementType === type2) {
+      e.target.classList.remove(elementType);
+      e.target.classList.add("sky");
+      selected.classList.add(elementType);
+      SELECTED_STATE = elementType;
+    }
+  }
+}
+
 container.addEventListener("click", (e) => {
   let elementType = e.target.getAttribute("class");
-  if (TOOL_STATE === "shovel") {
-    if (elementType === "ground" || elementType === "ground-top") {
-      e.target.classList.remove(elementType);
-      e.target.classList.add("sky");
-      selected.classList.add(elementType);
-      SELECTED_STATE = elementType;
-    }
-  }
-  if (TOOL_STATE === "pick") {
-    if (elementType === "stone") {
-      e.target.classList.remove(elementType);
-      e.target.classList.add("sky");
-      selected.classList.add(elementType);
-      SELECTED_STATE = elementType;
-    }
-  }
-  if (TOOL_STATE === "axe") {
-    if (elementType === "tree" || elementType === "leaf") {
-      e.target.classList.remove(elementType);
-      e.target.classList.add("sky");
-      selected.classList.add(elementType);
-      SELECTED_STATE = elementType;
-    }
-  }
+  toolFunctionality(e, elementType, "shovel", "ground", "ground-top");
+  toolFunctionality(e, elementType, "pick", "stone");
+  toolFunctionality(e, elementType, "axe", "tree", "leaf");
   if (SELECTED_STATE && TOOL_STATE === "") {
     e.target.classList.remove(elementType);
     e.target.classList.add(SELECTED_STATE);
     SELECTED_STATE = "";
   }
-  console.log(SELECTED_STATE, TOOL_STATE);
+  // console.log(SELECTED_STATE, TOOL_STATE);
 });
+
+// #region Main
+// container.addEventListener("click", (e) => {
+//   let elementType = e.target.getAttribute("class");
+//   if (TOOL_STATE === "shovel") {
+//     if (elementType === "ground" || elementType === "ground-top") {
+//       e.target.classList.remove(elementType);
+//       e.target.classList.add("sky");
+//       selected.classList.add(elementType);
+//       SELECTED_STATE = elementType;
+//     }
+//   }
+//   if (TOOL_STATE === "pick") {
+//     if (elementType === "stone") {
+//       e.target.classList.remove(elementType);
+//       e.target.classList.add("sky");
+//       selected.classList.add(elementType);
+//       SELECTED_STATE = elementType;
+//     }
+//   }
+//   if (TOOL_STATE === "axe") {
+//     if (elementType === "tree" || elementType === "leaf") {
+//       e.target.classList.remove(elementType);
+//       e.target.classList.add("sky");
+//       selected.classList.add(elementType);
+//       SELECTED_STATE = elementType;
+//     }
+//   }
+//   if (SELECTED_STATE && TOOL_STATE === "") {
+//     e.target.classList.remove(elementType);
+//     e.target.classList.add(SELECTED_STATE);
+//     SELECTED_STATE = "";
+//   }
+//   console.log(SELECTED_STATE, TOOL_STATE);
+// });
+// #endregion
