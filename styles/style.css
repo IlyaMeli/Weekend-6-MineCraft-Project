@@ -7,23 +7,28 @@
 }
 
 .container {
-  height: 100vmin;
-  width: 100vmin;
+  /* height: 100vmin; */
+  /* width: 100vmin; */
+  height: 100%;
+  max-width: 70%;
   display: grid;
+  overflow-x: scroll;
+}
+.container > div {
+  min-width: 50px;
 }
 
 .sky {
   background: #8cbfff;
+  filter: brightness(1);
 }
 .ground {
-  /* background: rgb(161, 103, 69); */
   background: url("./images/ground.jpeg");
   background-size: 100%;
 }
 .ground-top {
-  /* background: rgb(161, 103, 69); */
   background: url("./images/ground-top.jpeg");
-  background-size: 100%;
+  background-size: 110% 101%;
 }
 .stone {
   background: url("./images/stone.jpeg");
@@ -43,10 +48,11 @@
 }
 .wrapper {
   display: flex;
+  position: relative;
 }
-.container {
-}
+
 .worldwrap {
+  height: 100vh;
   width: 90%;
   display: flex;
   justify-content: center;
@@ -101,4 +107,89 @@
 }
 .container div:hover {
   border: solid 1px rgba(255, 255, 255, 0.89);
+}
+
+.menu-container {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.menu {
+  /* background-color: green; */
+  visibility: visible;
+  background: url("./images/background.jpg");
+  background-size: cover;
+  /* opacity: 1; */
+  height: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-side {
+  background-color: green;
+  opacity: 0;
+  right: 0;
+  height: 100%;
+  width: 10%;
+}
+.start-b {
+  background-color: white;
+  width: 20%;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  cursor: pointer;
+  transition: 0.4s;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.start-b:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.863);
+}
+.reset-game {
+  background-color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.inventory {
+  /* border: solid 1px white; */
+  width: 80%;
+  height: 10%;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.inventory > div {
+  border: solid 1px white;
+  height: 40%;
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.reset-game {
+  font-size: 20px;
+  opacity: 1;
+  transition: 0.6s;
+}
+.reset-game:hover {
+  font-size: 20px;
+  opacity: 1;
+  background-color: pink;
+  color: white;
 }

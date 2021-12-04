@@ -29,6 +29,8 @@ let worldMatrix = [
 ];
 
 const container = document.querySelector(".container");
+const worldwrap = document.querySelector(".worldwrap");
+const menuContainer = document.querySelector(".menu-container");
 const sidebar = document.querySelector(".sidebar");
 const selected = document.querySelector(".selected");
 const tools = document.querySelectorAll(".tools");
@@ -61,7 +63,6 @@ sidebar.addEventListener("click", (e) => {
     TOOL_STATE = e.target.getAttribute("data-type");
   }
   if (SELECTED_STATE && e.target === selected) {
-    // selected.classList.remove(selected.classList[1]);
     selected.className = "selected";
     TOOL_STATE = "";
   }
@@ -86,6 +87,10 @@ sidebar.addEventListener("click", (e) => {
     selected.className = "selected";
     TOOL_STATE = "";
   }
+  if (e.target.className === "reset-game") {
+    TOOL_STATE = "";
+    SELECTED_STATE = "";
+  }
 });
 
 function toolFunctionality(e, elementType, tool, type1, type2 = null) {
@@ -109,7 +114,15 @@ container.addEventListener("click", (e) => {
     e.target.classList.add(SELECTED_STATE);
     SELECTED_STATE = "";
   }
-  // console.log(SELECTED_STATE, TOOL_STATE);
+});
+
+menuContainer.addEventListener("click", (e) => {
+  if (e.target.className === "start-b") {
+    menuContainer.style.transitionDuration = "0.5s";
+    menuContainer.style.opacity = "0";
+    menuContainer.style.height = "0";
+    e.target.style.display = "none";
+  }
 });
 
 // #region Main
