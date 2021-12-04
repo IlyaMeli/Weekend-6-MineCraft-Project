@@ -101,6 +101,9 @@ function createMaxtrix(rowEnd, columnEnd) {
   generateBush(10, 6);
   generateBush(9, 5);
 }
+
+//start screen function
+
 createMaxtrix(15, 15);
 
 //dom selection ->
@@ -127,6 +130,16 @@ let drawWorld = () => {
     }
   }
 };
+//start function
+menuContainer.addEventListener("click", (e) => {
+  if (e.target.className === "start-b") {
+    drawWorld();
+    menuContainer.style.transitionDuration = "0.5s";
+    menuContainer.style.opacity = "0";
+    menuContainer.style.height = "0";
+    e.target.style.display = "none";
+  }
+});
 // changes background color back to black ->
 let toolsColorChange = () => {
   for (let tool of tools) {
@@ -193,15 +206,5 @@ container.addEventListener("click", (e) => {
     e.target.classList.add(SELECTED_STATE);
     e.target.classList.remove(elementType);
     SELECTED_STATE = "";
-  }
-});
-//start screen function
-menuContainer.addEventListener("click", (e) => {
-  if (e.target.className === "start-b") {
-    drawWorld();
-    menuContainer.style.transitionDuration = "0.5s";
-    menuContainer.style.opacity = "0";
-    menuContainer.style.height = "0";
-    e.target.style.display = "none";
   }
 });

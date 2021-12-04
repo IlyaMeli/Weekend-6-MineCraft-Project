@@ -126,6 +126,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 50px;
 }
 .menu-side {
   background-color: green;
@@ -192,4 +194,17 @@
   opacity: 1;
   background-color: pink;
   color: white;
+}
+
+.options-1,
+.options-2,
+.options-3 {
+  background-color: white;
+  width: 10%;
+  height: 5%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
