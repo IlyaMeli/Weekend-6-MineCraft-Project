@@ -157,23 +157,13 @@ sidebar.addEventListener("click", (e) => {
     TOOL_STATE = "";
   }
 
-  //   ELEMENTS_BOX.forEach((element) => {
-  //     if (e.target.className === element.type && element.amount > 0) {
-  //       element.amount--;
-  //       document.querySelector(`.inventory .${element.type}`).innerText =
-  //         element.amount;
-  //       SELECTED_STATE = element.type;
-  //       console.log("check");
-  //     }
-  //   });
-
   //reset ->
   if (e.target.className === "reset-game") {
-    // ELEMENTS_BOX.forEach((element) => {
-    //   element.amount = 0;
-    //   document.querySelector(`.inventory .${element.type}`).innerText =
-    //     element.amount;
-    // });
+    ELEMENTS_BOX.forEach((element) => {
+      element.amount = 0;
+      document.querySelector(`.inventory .${element.type}`).innerText =
+        element.amount;
+    });
     TOOL_STATE = "";
     SELECTED_STATE = "";
     selected.className = "selected";
@@ -186,10 +176,19 @@ function toolFunctionality(e, elementType, tool, type1, type2 = null) {
   if (TOOL_STATE === tool) {
     if (elementType === type1 || elementType === type2) {
       e.target.classList.remove(elementType);
+      ELEMENTS_BOX.forEach((element) => {
+        if (elementType === element.type) {
+          element.amount++;
+          document.querySelector(`.inventory .${element.type}`).innerText =
+            element.amount;
+          SELECTED_STATE = element.type;
+        }
+      });
       e.target.classList.add("sky");
       if (selected.classList.length > 1) {
         selected.classList = "selected";
       }
+
       selected.classList.add(elementType);
       SELECTED_STATE = elementType;
     }
@@ -202,9 +201,18 @@ container.addEventListener("click", (e) => {
   toolFunctionality(e, elementType, "pick", "stone");
   toolFunctionality(e, elementType, "axe", "tree", "leaf");
   if (SELECTED_STATE && TOOL_STATE === "") {
-    selected.className = "selected";
-    e.target.classList.add(SELECTED_STATE);
-    e.target.classList.remove(elementType);
-    SELECTED_STATE = "";
+    // e.target.classList.add(SELECTED_STATE);
+    ELEMENTS_BOX.forEach((element) => {
+      if (SELECTED_STATE === element.type && element.amount > 0) {
+        element.amount--;
+        document.querySelector(`.inventory .${element.type}`).innerText =
+          element.amount;
+        SELECTED_STATE = element.type;
+        e.target.classList = SELECTED_STATE;
+        if (element.amount === 0) {
+          selected.classList = "selected";
+        }
+      }
+    });
   }
 });
